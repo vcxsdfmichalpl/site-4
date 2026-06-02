@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TERAD GAMES SP Z O O | Cloud Infrastructure & Software Publishing</title>
+    <meta name="description" content="Advanced computing infrastructure, software publishing, and media streaming distribution services based in Lądek-Zdrój, Poland.">
+    <style>
+        /* DESIGN SYSTEM: CYBER-CLOUD & TECH INFRASTRUCTURE */
+        :root {
+            --bg-deep: #060713;         /* Deep Tech Black */
+            --bg-panel: rgba(20, 22, 40, 0.6); /* Glassmorphism Panel */
+            --primary: #6E56CF;         /* Cyber Violet */
+            --secondary: #00E5FF;       /* Data Cyan */
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --border-glow: rgba(110, 86, 207, 0.4);
+            
+            --font-display: 'Rajdhani', -apple-system, sans-serif;
+            --font-sans: 'Inter', system-ui, sans-serif;
+            --font-mono: 'Fira Code', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--text-main);
+            background-color: var(--bg-deep);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* --- CYBER GRID & GLOW BACKGROUND --- */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-image: 
+                linear-gradient(rgba(0, 229, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 229, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -2;
+            pointer-events: none;
+            transform: perspective(500px) rotateX(60deg) translateY(-100px) translateZ(-200px);
+            transform-origin: top center;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 20%; left: 50%; transform: translateX(-50%);
+            width: 80vw; height: 80vh;
+            background: radial-gradient(circle, rgba(110, 86, 207, 0.15) 0%, transparent 60%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            background: rgba(6, 7, 19, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-glow);
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-node {
+            width: 24px; height: 24px;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            border-radius: 6px;
+            box-shadow: 0 0 15px var(--primary);
+            position: relative;
+        }
+        .logo-node::after {
+            content: ''; position: absolute; top: 6px; left: 6px; right: 6px; bottom: 6px;
+            background: var(--bg-deep); border-radius: 2px;
+        }
+
+        .nav-links { display: flex; gap: 35px; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-links a { text-decoration: none; color: var(--text-muted); transition: color 0.3s; }
+        .nav-links a:hover { color: var(--secondary); }
+
+        /* --- HERO SECTION --- */
+        header {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 5% 60px;
+            position: relative;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .tech-badge {
+            display: inline-block;
+            font-family: var(--font-mono);
+            color: var(--secondary);
+            background: rgba(0, 229, 255, 0.1);
+            border: 1px solid rgba(0, 229, 255, 0.3);
+            padding: 6px 16px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+
+        header h1 {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            line-height: 1.1;
+            font-weight: 700;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, #FFF, var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            max-width: 550px;
+        }
+
+        .btn-cyber {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--primary), #4A3B8C);
+            color: #fff;
+            padding: 16px 40px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            border: 1px solid var(--primary);
+            box-shadow: 0 0 20px rgba(110, 86, 207, 0.4);
+        }
+
+        .btn-cyber:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(0, 229, 255, 0.5);
+            border-color: var(--secondary);
+        }
+
+        /* Server Node Graphic */
+        .server-graphic {
+            position: relative;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .server-blade {
+            width: 80%;
+            height: 60px;
+            background: rgba(20, 22, 40, 0.8);
+            border: 1px solid var(--border-glow);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            gap: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transform: perspective(500px) rotateY(-15deg);
+            transition: transform 0.5s;
+        }
+
+        .server-blade:hover { transform: perspective(500px) rotateY(0deg); }
+
+        .led-indicator { width: 8px; height: 8px; border-radius: 50%; background: var(--secondary); box-shadow: 0 0 10px var(--secondary); }
+        .led-indicator.blink { animation: blinker 1.5s infinite; }
+        .led-indicator.purple { background: var(--primary); box-shadow: 0 0 10px var(--primary); }
+
+        @keyframes blinker { 50% { opacity: 0.3; } }
+
+        /* --- SERVICES (D&B ALIGNED) --- */
+        .section {
+            padding: 100px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            margin-bottom: 50px;
+            border-left: 4px solid var(--secondary);
+            padding-left: 20px;
+        }
+
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .tech-card {
+            background: var(--bg-panel);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-top: 2px solid var(--border-glow);
+            padding: 40px;
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+
+        .tech-card:hover {
+            border-top-color: var(--secondary);
+            transform: translateY(-5px);
+            background: rgba(30, 34, 60, 0.8);
+        }
+
+        .card-icon {
+            font-family: var(--font-mono);
+            color: var(--secondary);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .tech-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .tech-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* --- APP PROMO (CRUCIAL FOR GOOGLE PLAY CONSOLE) --- */
+        .app-portal {
+            background: linear-gradient(135deg, rgba(20, 22, 40, 0.9) 0%, rgba(110, 86, 207, 0.1) 100%);
+            border: 1px solid var(--border-glow);
+            border-radius: 20px;
+            padding: 80px 5%;
+            margin: 60px 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .app-list { list-style: none; margin: 30px 0; }
+        .app-list li {
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            color: var(--text-main);
+        }
+        .app-list li::before {
+            content: '/>';
+            font-family: var(--font-mono);
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        /* UI Dashboard Mockup */
+        .mobile-dashboard {
+            width: 100%;
+            max-width: 320px;
+            height: 600px;
+            margin: 0 auto;
+            background: #0A0A14;
+            border: 2px solid var(--primary);
+            border-radius: 35px;
+            padding: 20px;
+            box-shadow: 0 0 50px rgba(0, 229, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .mobile-notch {
+            position: absolute;
+            top: 0; left: 50%; transform: translateX(-50%);
+            width: 100px; height: 20px;
+            background: var(--primary);
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        .dashboard-header {
+            text-align: center;
+            font-family: var(--font-mono);
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            margin-top: 15px;
+            margin-bottom: 20px;
+            border-bottom: 1px dashed rgba(255,255,255,0.1);
+            padding-bottom: 10px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .stat-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; }
+        .stat-value { font-family: var(--font-display); font-size: 1.8rem; color: var(--secondary); margin-top: 5px; line-height: 1; }
+        
+        .progress-bar {
+            width: 100%; height: 4px; background: rgba(255,255,255,0.1); margin-top: 10px; border-radius: 2px;
+        }
+        .progress-fill { height: 100%; width: 78%; background: var(--secondary); border-radius: 2px; box-shadow: 0 0 5px var(--secondary);}
+
+        .dash-btn {
+            margin-top: auto;
+            background: var(--primary);
+            color: #fff;
+            text-align: center;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: var(--font-display);
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* --- CORPORATE REGISTRY (D&B EXACT MATCH) --- */
+        .registry-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 60px;
+        }
+
+        .registry-panel {
+            background: var(--bg-panel);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 40px;
+        }
+
+        .data-row {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .data-row:last-child { border: none; margin: 0; padding: 0; }
+
+        .data-label {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--secondary);
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .data-value {
+            font-size: 1.05rem;
+            font-weight: 500;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        input, textarea {
+            width: 100%;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text-main);
+            padding: 16px;
+            border-radius: 8px;
+            font-family: var(--font-sans);
+            transition: border-color 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--secondary);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #020205;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 80px 5% 40px;
+            margin-top: 80px;
+        }
+
+        .footer-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        .footer-col h4 {
+            color: var(--text-main);
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 12px; }
+        .footer-col a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        .footer-col a:hover { color: var(--secondary); }
+
+        .copyright {
+            text-align: center;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: #475569;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        @media (max-width: 992px) {
+            .hero-container, .app-portal, .registry-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .server-graphic { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">
+            <div class="logo-node"></div>
+            TERAD GAMES
+        </div>
+        <div class="nav-links">
+            <a href="#infrastructure">Infrastructure</a>
+            <a href="#software">Software Publishing</a>
+            <a href="#app">Node Portal</a>
+            <a href="#registry">Data Registry</a>
+        </div>
+    </nav>
+
+    <header>
+        <div class="hero-container">
+            <div>
+                <div class="tech-badge">Data Processing & Web Hosting</div>
+                <h1>Powering the Future of <span class="text-gradient">Interactive Media</span>.</h1>
+                <p>TERAD GAMES SP Z O O is a leading Polish provider of computing infrastructure, backend software publishing, and high-performance media streaming networks.</p>
+                <a href="#app" class="btn-cyber">Initialize B2B Portal</a>
+            </div>
+            <div class="server-graphic">
+                <div class="server-blade">
+                    <div class="led-indicator blink"></div>
+                    <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted);">NODE 01 // ACTIVE</div>
+                    <div class="led-indicator purple" style="margin-left: auto;"></div>
+                </div>
+                <div class="server-blade">
+                    <div class="led-indicator blink"></div>
+                    <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted);">NODE 02 // ACTIVE</div>
+                    <div class="led-indicator purple" style="margin-left: auto;"></div>
+                </div>
+                <div class="server-blade" style="opacity: 0.5;">
+                    <div class="led-indicator" style="background: #333; box-shadow: none;"></div>
+                    <div style="font-family: var(--font-mono); font-size: 0.8rem; color: #555;">NODE 03 // STANDBY</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="infrastructure" class="section">
+        <h2 class="section-title">Core Operations</h2>
+        <div class="grid-cards">
+            <div class="tech-card">
+                <div class="card-icon">&lt;SYS_DESIGN&gt;</div>
+                <h3>Computer Systems Design</h3>
+                <p>Architecting and deploying robust backend computer systems and related services tailored for demanding software applications and media streaming platforms.</p>
+            </div>
+            <div class="tech-card">
+                <div class="card-icon">{PUB_API}</div>
+                <h3>Software Publishers</h3>
+                <p>Publishing proprietary interactive software and maintaining the backend data processing environments required for seamless B2C and B2B user experiences.</p>
+            </div>
+            <div class="tech-card">
+                <div class="card-icon">[STREAM_NET]</div>
+                <h3>Media Distribution</h3>
+                <p>Providing enterprise-grade Computing Infrastructure, Web Hosting, and Media Streaming Distribution Services optimized for high-bandwidth networks.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="app" class="section" style="padding-top: 0;">
+        <div class="app-portal">
+            <div>
+                <div class="tech-badge" style="border-color: var(--primary); color: var(--text-main);">Google Play Publisher Entity</div>
+                <h2 style="font-family: var(--font-display); font-size: 3rem; margin-bottom: 20px; line-height: 1.1;">Terad Cloud Node App</h2>
+                <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 20px;">
+                    To provide our B2B clients with transparent oversight of their leased environments, <strong>TERAD GAMES SP Z O O maintains a dedicated mobile control panel.</strong>
+                </p>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">
+                    The Terad Cloud Node app enables server administrators, software publishers, and streaming providers to monitor their computing infrastructure health, network latency, and data processing metrics in real-time from their Android devices.
+                </p>
+                
+                <ul class="app-list">
+                    <li>Real-time Server Uptime & Latency Monitoring.</li>
+                    <li>Live Media Streaming Bandwidth Analytics.</li>
+                    <li>Web Hosting Resource Allocation Controls.</li>
+                    <li>Push Alerts for Database Anomalies.</li>
+                </ul>
+            </div>
+            
+            <div class="mobile-dashboard">
+                <div class="mobile-notch"></div>
+                <div class="dashboard-header">TERAD CLOUD // SECURE PORTAL</div>
+                
+                <div class="stat-card">
+                    <div class="stat-label">Network Uptime</div>
+                    <div class="stat-value">99.98%</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-label">Media Streaming Bandwidth</div>
+                    <div class="stat-value" style="color: var(--text-main);">14.2 TB/s</div>
+                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-label">Active Publishing Nodes</div>
+                    <div class="stat-value" style="color: var(--primary);">1,024</div>
+                </div>
+
+                <div class="dash-btn">Deploy Configuration</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="registry" class="section">
+        <h2 class="section-title">Corporate Verification</h2>
+        <div class="registry-grid">
+            
+            <div class="registry-panel">
+                <div class="data-row">
+                    <span class="data-label">Legal Entity Name</span>
+                    <span class="data-value">TERAD GAMES SP Z O O</span>
+                </div>
+                <div class="data-row">
+                    <span class="data-label">Key Principal</span>
+                    <span class="data-value">Olszewski, Konrad Jan</span>
+                </div>
+                <div class="data-row">
+                    <span class="data-label">Primary Industry Classifications</span>
+                    <span class="data-value" style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;">
+                        • Software Publishers<br>
+                        • Computer Systems Design and Related Services<br>
+                        • Computing Infrastructure Providers, Data Processing, Web Hosting<br>
+                        • Media Streaming Distribution Services<br>
+                        • Social Networks and Other Media Networks<br>
+                        • Management, Scientific, and Technical Consulting
+                    </span>
+                </div>
+                <div class="data-row">
+                    <span class="data-label">Registered Headquarters</span>
+                    <span class="data-value" style="font-size: 0.95rem;">
+                        Ul. Tadeusza Kościuszki 78 Lądek-Zdrój<br>
+                        dolnośląskie, 57-540<br>
+                        Poland
+                    </span>
+                </div>
+                <div class="data-row" style="border: none;">
+                    <span class="data-label">Official Support Endpoint</span>
+                    <span class="data-value" style="color: var(--secondary);">info@teradgames.cloud</span>
+                </div>
+            </div>
+
+            <div>
+                <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 30px;">Request B2B access to our infrastructure networks, software publishing APIs, or app terminal support.</p>
+                <form onsubmit="event.preventDefault();">
+                    <input type="text" placeholder="Organization / Developer ID" required>
+                    <input type="email" placeholder="Corporate Email Protocol" required>
+                    <textarea placeholder="Define infrastructure requirements or API inquiry..." rows="5" required></textarea>
+                    <button type="submit" class="btn-cyber" style="width: 100%; border: none;">Transmit Request</button>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="logo" style="margin-bottom: 20px;">
+                    <div class="logo-node" style="box-shadow: none;"></div>
+                    TERAD GAMES
+                </div>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Architecting the digital backbone for modern software publishers and streaming distribution networks in Poland.</p>
+            </div>
+            
+            <div class="footer-col">
+                <h4>App Policies</h4>
+                <ul>
+                    <li><a href="#">Google Play Developer Profile</a></li>
+                    <li><a href="#">Report Node App Malfunction</a></li>
+                    <li><a href="#" style="color: var(--text-main); font-weight: bold;">Request Account & Data Deletion</a></li>
+                    <li><a href="#">Network Data Permissions</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Legal Framework</h4>
+                <ul>
+                    <li><a href="#">Web Hosting Service Level Agreement (SLA)</a></li>
+                    <li><a href="#">Data Processing Privacy Policy (GDPR)</a></li>
+                    <li><a href="#">Infrastructure Terms of Use</a></li>
+                    <li><a href="#">Cookie Architecture</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 TERAD GAMES SP Z O O. Registered in Poland. All systems optimal.
+        </div>
+    </footer>
+
+</body>
+</html>
